@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: url(./photo-1513151233558-d860c5398176.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+     background-attachment: fixed;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#divForm {
+    width: 100vw;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 20px #000;
+    padding: 20px 20px;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    transition: .5s;
+    opacity: 0.9;
+    width: 35%;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+form>input {
+    text-align: center;
+    box-shadow: 0 0 10px rgb(0, 242, 255);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 8px;
+    flex-grow: 1;
+    margin: 2px;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    color: white;
+}
+
+form>input:hover {
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    color: black;
+    box-shadow: inset 0px 0px 30px rgb(68, 132, 142);
+    border: 2px solid rgb(0, 242, 255);
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 20px #000;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    transition: .5s;
+    opacity: 0.9;
+    width: 35%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+#textarea {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 20px #000;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    transition: .5s;
+    opacity: 0.9;
+    width: 35%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+}
+#textarea h1:hover {
+    color: rgb(255, 255, 255);
+    text-shadow: inset 0px 0px 30px rgb(0, 0, 0);
+}
+#not{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 20px #000;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    transition: .5s;
+    opacity: 0.9;
+    width: 35%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+}
+#not h1:hover {
+    color: rgb(255, 255, 255);
+   text-shadow: inset 0px 0px 30px rgb(0, 0, 0);
+}
+#form>label {
+    color: black;
+    text-shadow: 0 0 10px rgb(0, 242, 255);
+}
+
+#form>label:hover {
+    color: white;
+    text-shadow: 0px 0px 10px black;
+}
+
+#form p {
+    text-align: center;
+    box-shadow: 0 0 10px rgb(0, 242, 255);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    height: 18px;
+    position: relative;
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    color: white;
+}
+
+.whiteWash {
+    display: none;
+}
+
+#form p:hover {
+    background: linear-gradient(to right, rgb(0, 204, 255) , rgb(0, 102, 255));
+    color: black;
+    box-shadow: inset 0px 0px 30px rgb(68, 132, 142);
+    border: 2px solid rgb(0, 242, 255);
+}
+
+@media screen and (max-width: 900px) {
+    #form, form ,#textarea,#not{
+        width: 80%;
+    }
+
+    body {
+        background-repeat: no-repeat;
+        height: 120vh;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="main">
+
+            <form onsubmit="agecalculater(); return false;">
+                <input type="date" id="datetime" required>
+                <input type="submit" value="Calculate"><br>
+            </form>
+            <div id="divForm" class="whiteWash">
+                <form id="form">
+                    <label class="whiteWash" id="agee" for="age">Your Age is :</label>
+                    <p class="whiteWash" id="age"></p>
+                    <label for="completeAge">Exact Age is :</label>
+                    <p id="completeAge"></p>
+                    <label for="nextbirthday">Next Birthday is on :</label>
+                    <p id="nextbirthday"></p>
+                    <label for="Dayleft">Days are left :</label>
+                    <p id="Dayleft"></p>
+                </form>
+            </div>
+    
+
+        <div class="area" id="textarea">
+           <h1>Happy Birthady To You</h1>
+        </div>
+        <div class="area" id="not">
+            <h1>You Aren't Born Yet</h1>
+         </div>
+    </div>
+
+    <script>
+       function agecalculater() {
+
+var userInput = document.getElementById('datetime').value;
+var todayDate = new Date();
+var userAge = new Date(userInput);
+var year = todayDate.getFullYear() - userAge.getFullYear();
+var month = (todayDate.getMonth() + 1) - (userAge.getMonth() + 1);
+var day = todayDate.getDate() - userAge.getDate();
+var age = todayDate.getTime() - userAge.getTime();
+var not = document.getElementById('not');
+var textarea = document.getElementById('textarea')
+
+age = Math.floor(age / (1000 * 60 * 60 * 24 * 365));
+
+if (year === 0 && month === 0 && day === 0  || todayDate.getDate() == userAge.getDate() && (todayDate.getMonth()) == (userAge.getMonth())) {
+    not.style.display = 'none'
+    textarea.style.display = 'block'
+
+}
+else if (userAge.getTime() > todayDate.getTime()) {
+    document.getElementById('age').style.display = "none";
+    document.getElementById('agee').style.display = "none";
+    document.getElementById('divForm').style.display = "none";
+    not.style.display = 'block'
+    textarea.style.display = 'none'
+    return false
+}else{
+    not.style.display = 'none'
+    textarea.style.display = 'none'
+}
+
+var nextbirthday = new Date(todayDate.getFullYear() + 1, userAge.getMonth(), userAge.getDate());
+var diff = nextbirthday.getTime() - todayDate.getTime();
+
+diff = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+var days = diff;
+nextbirthday = nextbirthday.toString();
+
+var dayName = nextbirthday.slice(0, 3);
+nextbirthday = nextbirthday.slice(4, 15);
+
+if (year === 0) {
+    if (month > 0 && day > 0) {
+        not.style.display = 'none'
+        textarea.style.display = 'none'
+        document.getElementById('completeAge').innerHTML = month + " months " + day + " days old";
+    }
+    else if (month === 0 && day > 0) {
+        not.style.display = 'none'
+        textarea.style.display = 'none'
+        document.getElementById('completeAge').innerHTML = day + " days old";
+    }
+    else if (month > 0 && day <= 0) {
+        not.style.display = 'none'
+        textarea.style.display = 'none'
+        document.getElementById('completeAge').innerHTML = Math.floor(todayDate.getTime() / (1000 * 60 * 60 * 24)) - (userAge.getTime() / (1000 * 60 * 60 * 24)) + " days old";
+    }
+
+}
+else {
+    not.style.display = 'none'
+    document.getElementById('completeAge').innerHTML = year + " years " + month + " months " + day + " days old";
+    document.getElementById('age').innerHTML = age + " years";
+    document.getElementById('age').style.display = "block";
+    document.getElementById('agee').style.display = "block";
+}
+not.style.display = 'none'
+document.getElementById('nextbirthday').innerHTML = dayName + ", " + nextbirthday;
+document.getElementById('Dayleft').innerHTML = days;
+document.getElementById('divForm').style.display = "block";
+
+}
+    </script>
+</body>
+</html>
